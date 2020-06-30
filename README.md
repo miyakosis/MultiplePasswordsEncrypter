@@ -23,7 +23,10 @@ Multiple Passwords Encrypter
 
 
 ## User Interface
-ここでは3つの質問を設定してファイルを暗号化する例と、そのファイルを復号化する際のUIを例として挙げました。  
+![enc](https://user-images.githubusercontent.com/5164088/86127462-e2fd0d00-bb1a-11ea-8a72-df3f23c86c2e.png)
+![dec](https://user-images.githubusercontent.com/5164088/86127480-e85a5780-bb1a-11ea-9973-11d4e415f830.png)
+
+ここでは説明のため、3つの質問を設定してファイルを暗号化する例と、そのファイルを復号化する際のUIを挙げました。  
 最初の質問では「りんご」「リンゴ」「梨」などの回答を許容します。  
 ただこのような表記ゆれを許容するということは、その分パスワードの強度が下がることを意味します。  
 そこで複数の質問を設定可能とし、ここでは「3つの質問のうち2つ以上正答すると復号できる」という設定にすることで機密性を上げています。
@@ -45,7 +48,8 @@ This software is distributed under the MIT License.
 最初に暗号化対象のファイルを Zip アーカイブ化して 1 ファイルにします(以降data)。  
 256bit乱数 で作成した 暗号化キー(dataKey)を用いて、data を AES-256 で暗号化します。  
 ```
-    data + dataKey => encryptedData
+data + dataKey => encryptedData
+(data (平文)を dataKey を鍵として暗号化し、encryptedData (暗号文)を得ることを示しています)
 ```
 
 次に質問ごとに暗号化キー(questionKey)を 256bit乱数 で作成します。  
@@ -59,7 +63,7 @@ combinedQuestionKey1_2 = questionKey1 + questionKey2
 (ここでの+は単に結合を意味します)
 ```
 
-もし3つの質問のうち3つを正答する必要がある場合は、dataKey を暗号化するキーは以下の一つだけとなります。  
+もし3つの質問のうち3つを正答する必要がある場合は、combinedQuestionKey は以下の一つだけとなります。  
 ```
 combinedQuestionKey0_1_2 = questionKey0 + questionKey1 + questionKey2
 ```
@@ -101,38 +105,42 @@ encryptedData - dataKey => data
 
 ## 暗号ファイルフォーマット
 
+(*が付いているフィールドは暗号化データを意味します)
+
 file format
-constant				3	定数 "MPE"
-archive format version	3	暗号ファイルフォーマットのバージョン。"000"
-encoder version			3	エンコーダーのバージョン。"000"
-Question header len		4	Question header 構造体のサイズ
-Question header CRC32	4	Question header 構造体の CRC
-encryptedData len		8	暗号化データのサイズ
-encryptedData CRC32		4	暗号化データの CRC
-Question header			(1)	Question header 構造体
-encryptedData(*)		n	暗号化データ
+
+|field|bytes|description|
+|---|---|---|
+|constant|3|定数 "MPE"|
+|archive format version|3|暗号ファイルフォーマットのバージョン。"000"|
+|encoder version|3|エンコーダーのバージョン。"000"|
+|Question header len|4|Question header 構造体のサイズ|
+|Question header CRC32|4|Question header 構造体の CRC|
+|encryptedData len|8|暗号化データのサイズ|
+|encryptedData CRC32|4|暗号化データの CRC|
+|Question header|(1)|Question header 構造体|
+|encryptedData(*)|n|暗号化データ|
 
 
-Question header
-	flag					1
-		isTrim				0x01
-		isRemoveSpace		0x02
-		isIgnoreCase		0x04
-		isIgnoreZenHan		0x08
-		isIgnoreHiraKata	0x10
-		isNoCompress		0x80
-	nQuestions				4
-	nRequiredPasswords		4
-	nDataKeyCombinations	4	(nQuestions と nRequiredPasswords から計算もできるが、一応保持)
-	encryptedDataKeys(*)	nDataKeyCombinations * 48
-	Question				(nQuestions)	nQuestions * Question 構造体
+Question header 構造体
 
-Question
-	hint string len				4
-	hint string					n
-	nPasswords					4
-	encryptedQuestionKeys(*)	nPasswords * 48
+|field|bytes|description|
+|---|---|---|
+|flag|1|isTrim 0x01<br /> isRemoveSpace 0x02<br /> isIgnoreCase 0x04<br /> isIgnoreZenHan 0x08<br /> isIgnoreHiraKata 0x10<br /> isNoCompress 0x80|
+|nQuestions|4||
+|nRequiredPasswords|4||
+|nDataKeyCombinations|4|(nQuestions と nRequiredPasswords から計算もできるが、一応保持)|
+|encryptedDataKeys(*)|nDataKeyCombinations * 48||
+|Question|(nQuestions個)|nQuestions * Question 構造体|
 
+Question 構造体
+
+|field|bytes|description|
+|---|---|---|
+|hint string len|4||
+|hint string|n||
+|nPasswords|4||
+|encryptedQuestionKeys(*)|nPasswords * 48||
 
 
 
