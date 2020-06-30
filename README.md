@@ -79,8 +79,8 @@ dataKey + combinedQuestionKey1_2 => encryptedDataKey1_2
 最後に、ユーザーが入力したパスワードで questionKey を暗号化します。  
 例のように、最初の質問に二つのパスワードが設定されている場合、それぞれのパスワードで暗号化します。  
 ```
-questionKey0 + "りんご" -> encryptedQuestionKey0-0
-questionKey0 + "なし" -> encryptedQuestionKey0-1
+questionKey0 + "りんご" => encryptedQuestionKey0-0
+questionKey0 + "なし" => encryptedQuestionKey0-1
 ```
 
 「パスワードに含まれる空白を無視する」「大文字と小文字を区別しない」などのオプションが設定されている場合は、
