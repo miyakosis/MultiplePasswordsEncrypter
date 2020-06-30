@@ -93,6 +93,11 @@ questionKey0 + "なし" => encryptedQuestionKey0-1
 ## 復号化の流れ
 質問0ではユーザーが入力したパスワードで、encryptedQuestionKey0-0、encryptedQuestionKey0-1、…と順に復号を試みていきます。  
 復号できればその質問の questionKey0 が取り出せます。  
+```
+encryptedQuestionKey0-0 - "なし" => NG
+encryptedQuestionKey0-1 - "なし" => questionKey0
+```
+
 質問0 と 質問2 が正答できれば、 questionKey0 + questionKey2 = combinedQuestionKey0_2 が取得できますので、encryptedDataKey0_2 から dataKey が取得できます。  
 ```
 encryptedDataKey0_2 - combinedQuestionKey0_2 => dataKey
