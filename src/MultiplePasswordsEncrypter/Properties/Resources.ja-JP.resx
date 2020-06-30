@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BtnAddDir" xml:space="preserve">
+    <value>フォルダ追加</value>
+  </data>
+  <data name="BtnAddFile" xml:space="preserve">
+    <value>ファイル追加</value>
+  </data>
+  <data name="BtnAddQuestion" xml:space="preserve">
+    <value>質問を追加</value>
+  </data>
+  <data name="BtnDecrypt" xml:space="preserve">
+    <value>複号化</value>
+  </data>
+  <data name="BtnEncrypt" xml:space="preserve">
+    <value>暗号化</value>
+  </data>
+  <data name="BtnRemove" xml:space="preserve">
+    <value>除去</value>
+  </data>
+  <data name="BtnSelect" xml:space="preserve">
+    <value>選択</value>
+  </data>
+  <data name="BtnSelectFile" xml:space="preserve">
+    <value>ファイル選択</value>
+  </data>
+  <data name="ChkCreateDir" xml:space="preserve">
+    <value>フォルダを作って展開</value>
+  </data>
+  <data name="ChkDecompressDesktop" xml:space="preserve">
+    <value>デスクトップに展開</value>
+  </data>
+  <data name="ChkIgnoreCase" xml:space="preserve">
+    <value>大文字と小文字を区別しない</value>
+  </data>
+  <data name="ChkIgnoreHiraKata" xml:space="preserve">
+    <value>ひらがなとカタカナを区別しない</value>
+  </data>
+  <data name="ChkIgnoreZenHan" xml:space="preserve">
+    <value>全角と半角を区別しない</value>
+  </data>
+  <data name="ChkNoCompress" xml:space="preserve">
+    <value>無圧縮でアーカイブを作成する</value>
+  </data>
+  <data name="ChkRemoveSpace" xml:space="preserve">
+    <value>パスワードに含まれる空白を無視する</value>
+  </data>
+  <data name="ChkTrim" xml:space="preserve">
+    <value>パスワード前後の空白を取り除く</value>
+  </data>
+  <data name="CmbNumRequiredPasswords" xml:space="preserve">
+    <value>個以上のパスワードが復号に必要</value>
+  </data>
+  <data name="LblOutputDir" xml:space="preserve">
+    <value>出力先:</value>
+  </data>
+  <data name="LblOutputFile" xml:space="preserve">
+    <value>出力ファイル:</value>
+  </data>
+  <data name="LblTargetFile" xml:space="preserve">
+    <value>対象ファイル:</value>
+  </data>
+  <data name="MsgCDeleteQuestion" xml:space="preserve">
+    <value>Question {0} を削除します。</value>
+  </data>
+  <data name="MsgCEncryptOnlyExistFile" xml:space="preserve">
+    <value>存在するファイルのみで暗号化しますか？</value>
+  </data>
+  <data name="MsgCOverwriteOutputFile" xml:space="preserve">
+    <value>出力ファイルが存在します。上書きしますか？</value>
+  </data>
+  <data name="MsgCStartEncryption" xml:space="preserve">
+    <value>暗号化を開始します。</value>
+  </data>
+  <data name="MsgEFailCreateFile" xml:space="preserve">
+    <value>出力ファイルの作成に失敗しました。\n\n詳細情報:</value>
+  </data>
+  <data name="MsgEFailEncryption" xml:space="preserve">
+    <value>暗号化に失敗しました。\n\n詳細情報:</value>
+  </data>
+  <data name="MsgEOutputNotSpecified" xml:space="preserve">
+    <value>出力ファイルが指定されていません。</value>
+  </data>
+  <data name="MsgERemoveLastQuestion" xml:space="preserve">
+    <value>一つだけのQuestionは削除できません。</value>
+  </data>
+  <data name="MsgETargetDuplicated" xml:space="preserve">
+    <value>ファイル名またはフォルダ名に重複があるため、暗号化できません。</value>
+  </data>
+  <data name="MsgETargetNotExisted" xml:space="preserve">
+    <value>暗号化するファイルがありません。</value>
+  </data>
+  <data name="MsgETargetNotMPE" xml:space="preserve">
+    <value>指定されたファイルは Multiple Passwords Encrypted ファイルではありません。\n\n詳細情報:</value>
+  </data>
+  <data name="MsgETargetNotSpecified" xml:space="preserve">
+    <value>暗号化の対象ファイルが指定されていません。</value>
+  </data>
+  <data name="MsgIEndDecryption" xml:space="preserve">
+    <value>複号化が完了しました。</value>
+  </data>
+  <data name="MsgIEndEncryption" xml:space="preserve">
+    <value>暗号化が完了しました。</value>
+  </data>
+  <data name="MsgIPasswordIncorrect" xml:space="preserve">
+    <value>パスワードが間違っています。</value>
+  </data>
+  <data name="MsgIRemoveNoTargetItem" xml:space="preserve">
+    <value>選択されているファイルまたはフォルダを暗号化の対象から除外します。</value>
+  </data>
+  <data name="MsgWDummyQuestion" xml:space="preserve">
+    <value>パスワードが設定されていない Question はダミーのQuestionとなります。</value>
+  </data>
+  <data name="MsgWFileNotExisted" xml:space="preserve">
+    <value>以下のファイルが存在しません。</value>
+  </data>
+  <data name="MsgWMPEInvalidFormat" xml:space="preserve">
+    <value>指定されたファイルは正しく復号化できない可能性があります。\n\n詳細情報:</value>
+  </data>
+  <data name="MsgWUndecrytableArchive" xml:space="preserve">
+    <value>復号に必要なパスワード数に満たないため、復号できないアーカイブが作成されます。</value>
+  </data>
+  <data name="TabDecrypt" xml:space="preserve">
+    <value>複号化</value>
+  </data>
+  <data name="TabEncrypt" xml:space="preserve">
+    <value>暗号化</value>
+  </data>
+</root>

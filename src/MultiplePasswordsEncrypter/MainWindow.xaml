@@ -1,0 +1,124 @@
+﻿<Window x:Class="MultiplePasswordsEncrypter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MultiplePasswordsEncrypter"
+        xmlns:properties="clr-namespace:MultiplePasswordsEncrypter.Properties"
+        mc:Ignorable="d"
+        Title="MultiplePasswordsEncrypter" Height="450" Width="525"
+        AllowDrop="True" Drop="Window_Drop" PreviewDragOver="Window_PreviewDragOver">
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Name="MenuExit" Header="Exit" Click="MenuExit_Click" />
+            </MenuItem>
+            <MenuItem Header="Language">
+                <MenuItem Name="MenuLangEn" Header="English" IsCheckable="True"  Click="MenuLang_Click"/>
+                <MenuItem Name="MenuLangJa" Header="Japanese" IsCheckable="True" Click="MenuLang_Click"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Name="MenuVersion" Header="Version" Click="MenuVersion_Click" />
+            </MenuItem>
+        </Menu>
+
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <Label Name="StatusBarLabel"/>
+            </StatusBarItem>
+        </StatusBar>
+
+        <TabControl SelectionChanged="TabControl_SelectionChanged">
+            <TabItem x:Name="EncTab" Header="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.TabEncrypt, Mode=OneWay}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="EncQuestionListPanel" Orientation="Vertical">
+                        <Border BorderThickness="1" BorderBrush="Gray" Margin="0,0,5,0">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Vertical" >
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                            <Label Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.LblTargetFile, Mode=OneWay}"  Width="80" />
+                                            <ListBox x:Name="EncFileNameLb" MinWidth="200" MinHeight="80" MaxHeight="200" VerticalAlignment="Center" SelectionMode="Extended"/>
+                                            <StackPanel Orientation="Vertical">
+                                                <Button Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.BtnAddFile, Mode=OneWay}" MinWidth="60" Margin="5,5,0,0" VerticalAlignment="Center" Click="EncFileSelectButton_Click"/>
+                                                <Button Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.BtnAddDir, Mode=OneWay}" MinWidth="60" Margin="5,5,0,0" VerticalAlignment="Center" Click="EncDirSelectButton_Click"/>
+                                                <Button Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.BtnRemove, Mode=OneWay}" MinWidth="60" Margin="5,5,0,0" VerticalAlignment="Center" Click="EncFileRemoveButton_Click"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                            <Label Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.LblOutputFile, Mode=OneWay}"  Width="80" />
+                                            <TextBox x:Name="EncOutputFileTxt" MinWidth="200" Text="" VerticalAlignment="Center" />
+                                            <Button Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.BtnSelect, Mode=OneWay}" MinWidth="60" Margin="5,0,0,0" VerticalAlignment="Center" Click="EncOutputFileSelectButton_Click"/>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                    <StackPanel Orientation="Horizontal" Margin="5,5,0,0">
+                                        <Button x:Name="EncryptBtn" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.BtnEncrypt, Mode=OneWay}" MinWidth="100" Click="EncryptButton_Click" />
+                                        <ComboBox x:Name="EncNumRequiredPasswordsCmb" Margin="10,0,0,0" />
+                                        <Label Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.CmbNumRequiredPasswords, Mode=OneWay}" />
+                                    </StackPanel>
+                                </StackPanel>
+                                <WrapPanel Orientation="Horizontal" Margin="0,5">
+                                    <CheckBox x:Name="EncTrimChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkTrim, Mode=OneWay}" IsChecked="True" Margin="10,0,0,0"/>
+                                    <CheckBox x:Name="EncRemoveSpaceChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkRemoveSpace, Mode=OneWay}" IsChecked="False" Margin="10,0,0,0"/>
+                                    <CheckBox x:Name="EncIgnoreCaseChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkIgnoreCase, Mode=OneWay}" Margin="10,0,0,0"/>
+                                    <CheckBox x:Name="EncIgnoreZenHanChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkIgnoreZenHan, Mode=OneWay}" Margin="10,0,0,0"/>
+                                    <CheckBox x:Name="EncIgnoreHiraKataChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkIgnoreHiraKata, Mode=OneWay}" Margin="10,0,0,0"/>
+                                    <CheckBox x:Name="EncNoCompressChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkNoCompress, Mode=OneWay}" Margin="10,0,0,0"/>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- Questions are added here. -->
+
+                        <Button Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.BtnAddQuestion, Mode=OneWay}" HorizontalAlignment="Left" Margin="10,10,0,0" Click="EncAddQuestionButton_Click"></Button>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem x:Name="DecTab" Header="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.TabDecrypt, Mode=OneWay}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel x:Name="DecQuestionListPanel" Orientation="Vertical">
+                        <Border BorderThickness="1" BorderBrush="Gray" Margin="0,0,5,0">
+                            <StackPanel Orientation="Vertical" Margin="0,5,0,0">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.LblTargetFile, Mode=OneWay}" Width="80" />
+                                        <TextBox x:Name="DecEncryptedFileTxt" Text="" MinWidth="200" TextChanged="DecEncryptedFileTxt_TextChanged" />
+                                        <Button Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.BtnSelect, Mode=OneWay}" MinWidth="60"  Margin="5,0,0,0" VerticalAlignment="Center" Click="DecFileSelectButton_Click"/>
+                                    </StackPanel>
+                                </ScrollViewer>
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" >
+                                    <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                        <Label Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.LblOutputDir, Mode=OneWay}" Width="80" />
+                                        <TextBox x:Name="DecOutputDirTxt" MinWidth="200" Text="" />
+                                        <Button x:Name="DecOutputDirSelectBtn" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.BtnSelect, Mode=OneWay}" MinWidth="60" Margin="5,0,0,0" VerticalAlignment="Center" Click="DecOutputDirSelectButton_Click"/>
+                                    </StackPanel>
+                                </ScrollViewer>
+                                <StackPanel Orientation="Horizontal" Margin="5,5,0,0">
+                                    <Button x:Name="DecryptBtn" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.BtnDecrypt, Mode=OneWay}" MinWidth="100" Click="DecryptButton_Click" />
+                                    <ComboBox x:Name="DecNumRequiredPasswordsCmb" Margin="10,0,0,0" />
+                                    <Label Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.CmbNumRequiredPasswords, Mode=OneWay}" />
+                                </StackPanel>
+                                <WrapPanel Orientation="Horizontal" Margin="0,5,0,0">
+                                    <CheckBox x:Name="DecTrimChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkTrim, Mode=OneWay}" IsEnabled="False" Margin="10,0,0,0"/>
+                                    <CheckBox x:Name="DecRemoveSpaceChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkRemoveSpace, Mode=OneWay}" IsEnabled="False" Margin="10,0,0,0"/>
+                                    <CheckBox x:Name="DecIgnoreCaseChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkIgnoreCase, Mode=OneWay}" IsEnabled="False" Margin="10,0,0,0"/>
+                                    <CheckBox x:Name="DecIgnoreZenHanChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkIgnoreZenHan, Mode=OneWay}" IsEnabled="False" Margin="10,0,0,0"/>
+                                    <CheckBox x:Name="DecIgnoreHiraKataChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkIgnoreHiraKata, Mode=OneWay}" IsEnabled="False" Margin="10,0,0,0"/>
+                                    <CheckBox x:Name="DecNoCompressChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkNoCompress, Mode=OneWay}" IsEnabled="False" Margin="10,0,0,0"/>
+                                </WrapPanel>
+                                <WrapPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                    <CheckBox x:Name="DecCreateDirChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkCreateDir, Mode=OneWay}" IsChecked="True" Margin="10,0,0,0"/>
+                                    <CheckBox x:Name="DecDecompressDesktopChk" Content="{Binding Source={x:Static local:ResourceService.Current}, Path=Resources.ChkDecompressDesktop, Mode=OneWay}" IsChecked="False" Margin="10,0,0,0" Click="DecDecompressDesktopChk_Click"/>
+                                </WrapPanel>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+        </TabControl>
+    </DockPanel>
+</Window>
